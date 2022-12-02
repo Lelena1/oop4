@@ -1,25 +1,40 @@
 import java.util.Objects;
 
-public abstract class Driver {
+public abstract class Driver<T extends Transport> {
     private final String fullName;
     private final Boolean hasLicense;
     private final int experience;
+    private final T car;
 
-    public Driver(String fullName) {
-        this(fullName, true, 0);
+    public Driver(String fullName, T car) {
+        this(fullName, false, 0, car);
     }
 
-    public Driver(String fullName, Boolean hasLicense, int experience) {
+    public Driver(String fullName, Boolean hasLicense, int experience, T car) {
         this.fullName = ValidateUtils.validateString(fullName);
         this.hasLicense = ValidateUtils.validateBoolean(hasLicense);
         this.experience = ValidateUtils.validateNum(experience);
+        this.car = car;
     }
 
-    public abstract String toStart();
+    public void toStart() {
+        System.out.printf("The driver %s started moving. ", this.fullName);
+        this.car.startMoving();
+    }
 
-    public abstract String toStop();
+    public void toStop() {
+        System.out.printf("The driver %s stopped. ", this.fullName);
+        this.car.finish();
+    }
 
-    public abstract String toRefuel();
+    public void toRefuel() {
+        System.out.printf("The driver %s refueled the vehicle.\n", this.fullName);
+    }
+
+    public String participateInTheRace() {
+        return "The driver  " + this.fullName + " is driving the vehicle  " + this.car.getBrand() +
+                " " + this.car.getModel() + " and will participate in the race.";
+    }
 
     public String getFullName() {
         return fullName;
@@ -48,10 +63,10 @@ public abstract class Driver {
 
     @Override
     public String toString() {
-        return "Driver{" +
-                "fullName='" + fullName + '\'' +
-                ", hasLicense=" + hasLicense +
-                ", experience=" + experience +
-                '}';
+        return "Driver: " +
+                "fullName: " + fullName +
+                ", hasLicense: " + hasLicense +
+                ", experience: " + experience +
+                ".";
     }
 }

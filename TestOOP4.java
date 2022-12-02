@@ -60,29 +60,31 @@ public class TestOOP4 {
         System.out.println();
 
         System.out.println(bmw);
-        DriverB<Car> driverB = new DriverB<>("Borisov Boris Borisovich", true, 5);
-        System.out.println(driverB.participateInTheRace(lada));
-        System.out.println(driverB.toStart());
-        System.out.println(driverB.toRefuel());
-        System.out.println(driverB.toStop());
+        DriverB driverB = new DriverB("Borisov Boris Borisovich", true, 5, lada);
+        System.out.println(driverB.participateInTheRace());
+        System.out.println(driverB);
+        driverB.toStart();
+        driverB.toStop();
+        driverB.toRefuel();
 
         System.out.println();
 
         System.out.println(scania);
-        DriverC<Truck> driverC = new DriverC<>("Klimov Klim Klimovich", true, 12);
-        System.out.println(driverC.participateInTheRace(scania));
-        System.out.println(driverC.toStart());
-        System.out.println(driverC.toRefuel());
-        System.out.println(driverC.toStop());
+        DriverC driverC = new DriverC ("Klimov Klim Klimovich", true, 12, scania);
+        System.out.println(driverC.participateInTheRace());
+        System.out.println(driverC);
+        driverC.toStart();
+        driverC.toStop();
+        driverC.toRefuel();
         System.out.println();
 
         System.out.println(paz);
-        DriverD<Bus> driverD = new DriverD<>("Petrov Petr Petrovich", true, 3);
-        System.out.println(driverD.participateInTheRace(paz));
-        System.out.println(driverD.toStart());
-        System.out.println(driverD.toRefuel());
-        System.out.println(driverD.toStop());
-
+        DriverD driverD = new DriverD("Petrov Petr Petrovich", true, 3, paz);
+        System.out.println(driverD.participateInTheRace());
+        System.out.println(driverD);
+        driverD.toStart();
+        driverD.toStop();
+        driverD.toRefuel();
 
     }
 
