@@ -1,10 +1,10 @@
 public class TestOOP4 {
     public static void main(String[] args) {
 
-        Car lada = new Car("Lada", "Grande", 1.7, 23.5, 300);
-        Car audi = new Car("Audi", "A8 50 L TDI quattro", 3.0, 23.0, 320);
-        Car bmw = new Car("BMW", "Z8", 3.0, 22.6, 335);
-        Car kia = new Car("KIA", "Sportage 4 generation", 2.4, 23.7, 295);
+        Car lada = new Car("Lada", "Grande", 1.7, 23.5, 300, BodyType.SEDAN);
+        Car audi = new Car("Audi", "A8 50 L TDI quattro", 3.0, 23.0, 320, BodyType.COUPE);
+        Car bmw = new Car("BMW", "Z8", 3.0, 22.6, 335, BodyType.HATCHBACK);
+        Car kia = new Car("KIA", "Sportage 4 generation", 2.4, 23.7, 295, BodyType.COMPARTMENT);
 
         System.out.println();
         lada.showCharacteristics();
@@ -12,10 +12,10 @@ public class TestOOP4 {
         bmw.showCharacteristics();
         kia.showCharacteristics();
 
-        Bus liAZ = new Bus("LiAZ", "5256", 6.8, 36.7, 150);
-        Bus gaz = new Bus("GAZ", "4234", 2.9, 39.2, 127);
-        Bus paz = new Bus("PAZ", "4234", 4.7, 44.2, 106);
-        Bus autosan = new Bus("AUTOSAN", "A10-12T ORZEL", 8.27, 32.8, 180);
+        Bus liAZ = new Bus("LiAZ", "5256", 6.8, 36.7, 150, Capacity.LARGE);
+        Bus gaz = new Bus("GAZ", "4234", 2.9, 39.2, 127, Capacity.SMALL);
+        Bus paz = new Bus("PAZ", "4234", 4.7, 44.2, 106, Capacity.EXTRA_LARGE);
+        Bus autosan = new Bus("AUTOSAN", "A10-12T ORZEL", 8.27, 32.8, 180, Capacity.MEDIUM);
 
         System.out.println();
         liAZ.showCharacteristics();
@@ -23,10 +23,10 @@ public class TestOOP4 {
         paz.showCharacteristics();
         autosan.showCharacteristics();
 
-        Truck scania = new Truck("Scania", "R 420", 11.7, 40.0, 150);
-        Truck renault = new Truck("Renault", "Magnum 460 DXI", 12.0, 38.9, 153);
-        Truck volvo = new Truck("Volvo", "FMX", 10.8, 48.7, 144);
-        Truck man = new Truck("Man", "TGS 33.480", 12.4, 38.4, 155);
+        Truck scania = new Truck("Scania", "R 420", 11.7, 40.0, 150, LoadCapacity.N1);
+        Truck renault = new Truck("Renault", "Magnum 460 DXI", 12.0, 38.9, 153, LoadCapacity.N2);
+        Truck volvo = new Truck("Volvo", "FMX", 10.8, 48.7, 144, LoadCapacity.N3);
+        Truck man = new Truck("Man", "TGS 33.480", 12.4, 38.4, 155, LoadCapacity.N3);
 
         System.out.println();
         scania.showCharacteristics();
@@ -70,7 +70,7 @@ public class TestOOP4 {
         System.out.println();
 
         System.out.println(scania);
-        DriverC driverC = new DriverC ("Klimov Klim Klimovich", true, 12, scania);
+        DriverC driverC = new DriverC("Klimov Klim Klimovich", true, 12, scania);
         System.out.println(driverC.participateInTheRace());
         System.out.println(driverC);
         driverC.toStart();
@@ -85,7 +85,11 @@ public class TestOOP4 {
         driverD.toStart();
         driverD.toStop();
         driverD.toRefuel();
+        System.out.println();
 
+        lada.printType();
+        volvo.printType();
+        paz.printType();
     }
 
     public static void checkCompeting(Competing... transports) {

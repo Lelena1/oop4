@@ -10,15 +10,25 @@ public class Bus extends Transport implements Competing {
             ACT_CHECK_TECHNICAL_CONDITION};
     public double bestLapTime;
     public int maxSpeed;
+    private Capacity capacity;
 
     public Bus() {
-        this("no information", "no information", 0.0, 0, 0);
+        this("no information", "no information", 0.0, 0, 0, null);
     }
 
-    public Bus(String brand, String model, double engineVolume, double bestLapTime, int maxSpeed) {
+    public Bus(String brand, String model, double engineVolume, double bestLapTime, int maxSpeed, Capacity capacity) {
         super(brand, model, engineVolume);
         this.bestLapTime = ValidateUtils.validateDoubleNum(bestLapTime);
         this.maxSpeed = ValidateUtils.validateNum(maxSpeed);
+        this.capacity = capacity;
+    }
+
+    public Capacity getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Capacity capacity) {
+        this.capacity = capacity;
     }
 
     @Override
@@ -29,6 +39,17 @@ public class Bus extends Transport implements Competing {
     @Override
     public void finish() {
         System.out.println("The bus is finishing its moving");
+    }
+
+    @Override
+    public void printType() {
+        if (capacity == null) {
+            System.out.println("Данных по грузовику недостаточно");
+        } else {
+            String from = capacity.getFrom() == null ? "" : "от " + capacity.getFrom() + " ";
+            String to = capacity.getTo() == null ? "" : "до " + capacity.getTo();
+            System.out.println("Вместимость автобуса: " + from + to + " чел.");
+        }
     }
 
     public void showCharacteristics() {

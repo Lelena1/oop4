@@ -38,6 +38,8 @@ public abstract class Transport {
 
     public abstract void finish();
 
+    public abstract void printType();
+
     public void showCharacteristics() {
         System.out.println(toString());
     }
