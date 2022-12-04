@@ -9,16 +9,27 @@ public class Car extends Transport implements Competing {
             ACT_CHECK_TECHNICAL_CONDITION};
     private final double bestLapTime;
     private final int maxSpeed;
+    private BodyType bodyType;
 
 
     public Car() {
-        this("no information", "no information", 0.0, 0.0, 0);
+        this("no information", "no information", 0.0, 0.0, 0, null);
     }
 
-    public Car(String brand, String model, double engineVolume, double bestLapTime, int maxSpeed) {
+    public Car(String brand, String model, double engineVolume, double bestLapTime, int maxSpeed, BodyType bodyType) {
         super(brand, model, engineVolume);
         this.bestLapTime = ValidateUtils.validateDoubleNum(bestLapTime);
         this.maxSpeed = ValidateUtils.validateNum(maxSpeed);
+        this.bodyType = bodyType;
+    }
+
+
+    public void setBodyType(BodyType bodyType) {
+        this.bodyType = bodyType;
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
     }
 
     @Override
@@ -29,6 +40,15 @@ public class Car extends Transport implements Competing {
     @Override
     public void finish() {
         System.out.println("The car finished quickly");
+    }
+
+    @Override
+    public void printType() {
+        if (bodyType == null) {
+            System.out.println("Данных по автомобилю недостаточно");
+        } else {
+            System.out.println("Тип кузова автомобиля: " + bodyType + ".");
+        }
     }
 
     public void showCharacteristics() {
@@ -102,3 +122,7 @@ public class Car extends Transport implements Competing {
                 " км/ч.";
     }
 }
+
+
+
+

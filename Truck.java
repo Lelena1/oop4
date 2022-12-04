@@ -8,16 +8,27 @@ public class Truck extends Transport implements Competing {
     public static final String[] ALL_PIT_STOP_ACTIONS = {ACT_REFUEL, ACT_CHECK_TECHNICAL_CONDITION, ACT_REPAIR};
     private final double bestLapTime;
     private final int maxSpeed;
+    private LoadCapacity loadCapacity;
 
     public Truck() {
         this("no information", "no information", 0.0, 0.0,
-                0);
+                0, null);
     }
 
-    public Truck(String brand, String model, double engineVolume, double bestLapTime, int maxSpeed) {
+    public Truck(String brand, String model, double engineVolume, double bestLapTime, int maxSpeed,
+                 LoadCapacity loadCapacity) {
         super(brand, model, engineVolume);
         this.bestLapTime = ValidateUtils.validateDoubleNum(bestLapTime);
         this.maxSpeed = ValidateUtils.validateNum(maxSpeed);
+        this.loadCapacity = loadCapacity;
+    }
+
+    public LoadCapacity getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(LoadCapacity loadCapacity) {
+        this.loadCapacity = loadCapacity;
     }
 
     @Override
@@ -28,6 +39,18 @@ public class Truck extends Transport implements Competing {
     @Override
     public void finish() {
         System.out.println("Truck is finish");
+    }
+
+    @Override
+    public void printType() {
+        if (loadCapacity == null) {
+            System.out.println("Данных по грузовику недостаточно");
+        } else {
+            String from = loadCapacity.getFrom() == null ? "" : "от " + loadCapacity.getFrom() + " ";
+            String to = loadCapacity.getTo() == null ? "" : "до " + loadCapacity.getTo();
+            System.out.println("Грузоподъемность грузовика: " + from + to + " т.");
+        }
+
     }
 
     public void showCharacteristics() {
