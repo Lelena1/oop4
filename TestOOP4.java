@@ -79,7 +79,7 @@ public class TestOOP4 {
         System.out.println();
 
         System.out.println(paz);
-        DriverD driverD = new DriverD("Petrov Petr Petrovich", true, 3, paz);
+        DriverD driverD = new DriverD("Petrov Petr Petrovich", null, 3, paz);
         System.out.println(driverD.participateInTheRace());
         System.out.println(driverD);
         driverD.toStart();
@@ -90,6 +90,9 @@ public class TestOOP4 {
         lada.printType();
         volvo.printType();
         paz.printType();
+        System.out.println();
+
+        diagnostics(lada, audi, kia, bmw, liAZ, gaz, paz, autosan, scania, renault, volvo, man);
     }
 
     public static void checkCompeting(Competing... transports) {
@@ -98,6 +101,26 @@ public class TestOOP4 {
                 transport.doPitStop(action);
             }
             System.out.println();
+        }
+    }
+
+    private static void diagnostics(Transport... transports) {
+        for (Transport transport : transports) {
+            diagnosticsTransport(transport);
+        }
+    }
+
+    private static void diagnosticsTransport(Transport transport) {
+        try {
+            if (!transport.diagnostics()) {
+                throw new RuntimeException("Автомобиль " + transport.getBrand() + " " + transport.getModel() +
+                        " не прошел диагностику");
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Проверка проведена для автомобиля " + transport.getBrand() + " " +
+                    transport.getModel());
         }
     }
 }

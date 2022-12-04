@@ -2,7 +2,7 @@ import java.util.Objects;
 
 public abstract class Driver<T extends Transport> {
     private final String fullName;
-    private final Boolean hasLicense;
+    private Boolean hasLicense;
     private final int experience;
     private final T car;
 
@@ -12,7 +12,7 @@ public abstract class Driver<T extends Transport> {
 
     public Driver(String fullName, Boolean hasLicense, int experience, T car) {
         this.fullName = ValidateUtils.validateString(fullName);
-        this.hasLicense = ValidateUtils.validateBoolean(hasLicense);
+        System.out.println(hasLicense);;
         this.experience = ValidateUtils.validateNum(experience);
         this.car = car;
     }
@@ -46,6 +46,13 @@ public abstract class Driver<T extends Transport> {
 
     public int getExperience() {
         return experience;
+    }
+
+    public void setHasLicense(Boolean hasLicense) {
+        if (hasLicense == null) {
+            throw new IllegalArgumentException("Не указано наличие прав");
+        }
+        this.hasLicense = hasLicense;
     }
 
     @Override

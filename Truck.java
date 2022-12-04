@@ -57,6 +57,11 @@ public class Truck extends Transport implements Competing {
         System.out.println(toString());
     }
 
+    @Override
+    public boolean diagnostics() {
+        return Math.random() > 0.35;
+    }
+
 
     @Override
     public String[] getAllPitStopActions() {
