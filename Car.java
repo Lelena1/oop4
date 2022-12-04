@@ -56,6 +56,11 @@ public class Car extends Transport implements Competing {
     }
 
     @Override
+    public boolean diagnostics() {
+        return Math.random() > 0.5;
+    }
+
+    @Override
     public String[] getAllPitStopActions() {
         return ALL_PIT_STOP_ACTIONS;
     }

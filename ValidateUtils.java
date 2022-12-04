@@ -6,12 +6,9 @@ public class ValidateUtils {
     public static int validateNum(int value) {
         return value < 0 ? Math.abs(value) : value;
     }
+
     public static double validateDoubleNum(double value) {
         return value < 0 ? Math.abs(value) : value;
-    }
-
-    public static Boolean validateBoolean(Boolean value) {
-        return value != null && value;
     }
 
 }

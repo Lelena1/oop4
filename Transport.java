@@ -44,6 +44,8 @@ public abstract class Transport {
         System.out.println(toString());
     }
 
+    public abstract boolean diagnostics();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
