@@ -12,7 +12,7 @@ public abstract class Driver<T extends Transport> {
 
     public Driver(String fullName, Boolean hasLicense, int experience, T car) {
         this.fullName = ValidateUtils.validateString(fullName);
-        System.out.println(hasLicense);;
+        setHasLicense(hasLicense);
         this.experience = ValidateUtils.validateNum(experience);
         this.car = car;
     }
@@ -70,10 +70,7 @@ public abstract class Driver<T extends Transport> {
 
     @Override
     public String toString() {
-        return "Driver: " +
-                "fullName: " + fullName +
-                ", hasLicense: " + hasLicense +
-                ", experience: " + experience +
-                ".";
+        return "Водитель: " + fullName + ", имеет ли лицензию: " + hasLicense +
+                ", опыт вождения: " + experience + " лет.";
     }
 }

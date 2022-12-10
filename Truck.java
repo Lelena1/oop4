@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Objects;
 
 public class Truck extends Transport implements Competing {
@@ -9,6 +10,15 @@ public class Truck extends Transport implements Competing {
     private final double bestLapTime;
     private final int maxSpeed;
     private LoadCapacity loadCapacity;
+    private List<Transport> trucks;
+
+    public List<Transport> getTrucks() {
+        return trucks;
+    }
+
+    public void setTrucks(List<Transport> trucks) {
+        this.trucks = trucks;
+    }
 
     public Truck() {
         this("no information", "no information", 0.0, 0.0,
@@ -60,6 +70,11 @@ public class Truck extends Transport implements Competing {
     @Override
     public boolean diagnostics() {
         return Math.random() > 0.35;
+    }
+
+    @Override
+    public void fixTransport() {
+        System.out.println("Грузовик " + getBrand() + " " + getModel() + " отремонтирован");
     }
 
 
