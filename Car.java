@@ -1,5 +1,5 @@
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Car extends Transport implements Competing {
 
@@ -11,13 +11,13 @@ public class Car extends Transport implements Competing {
     private final double bestLapTime;
     private final int maxSpeed;
     private BodyType bodyType;
-    private List<Transport>cars;
+    private Set<Transport> cars;
 
-    public List<Transport> getCars() {
+    public Set<Transport> getCars() {
         return cars;
     }
 
-    public void setCars(List<Transport> cars) {
+    public void setCars(Set<Transport> cars) {
         this.cars = cars;
     }
 
@@ -126,12 +126,12 @@ public class Car extends Transport implements Competing {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Car car = (Car) o;
-        return Double.compare(car.bestLapTime, bestLapTime) == 0 && maxSpeed == car.maxSpeed;
+        return Double.compare(car.bestLapTime, bestLapTime) == 0 && maxSpeed == car.maxSpeed && bodyType == car.bodyType && Objects.equals(cars, car.cars);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), bestLapTime, maxSpeed);
+        return Objects.hash(super.hashCode(), bestLapTime, maxSpeed, bodyType, cars);
     }
 
     @Override

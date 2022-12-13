@@ -1,5 +1,5 @@
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Truck extends Transport implements Competing {
 
@@ -10,13 +10,13 @@ public class Truck extends Transport implements Competing {
     private final double bestLapTime;
     private final int maxSpeed;
     private LoadCapacity loadCapacity;
-    private List<Transport> trucks;
+    private Set<Transport> trucks;
 
-    public List<Transport> getTrucks() {
+    public Set<Transport> getTrucks() {
         return trucks;
     }
 
-    public void setTrucks(List<Transport> trucks) {
+    public void setTrucks(Set<Transport> trucks) {
         this.trucks = trucks;
     }
 
