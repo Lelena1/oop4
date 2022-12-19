@@ -1,29 +1,44 @@
 package collection2;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public final class Recipe {
+    private final Map<Product, Double> products = new HashMap<>();
     private final String name;
-    private final double totalCost;
-    private final ProductList productList;
 
-    public Recipe(String name, double totalCost, ProductList productList) {
+    public Recipe(String name) {
         this.name = ValidateUtils.validateString(name);
-        this.totalCost = ValidateUtils.validateDouble(totalCost);
-        this.productList = productList;
-
     }
 
     public String getName() {
         return name;
     }
 
-    public double getTotalCost() {
-        return totalCost;
+    public double calculateTotalCostProducts() {
+        double totalCostProducts = 0.0;
+        for (Map.Entry<Product,Double>product : products.entrySet()) {
+            totalCostProducts += product.getKey().getAmount() * product.getKey().getPrice();
+        }
+        return totalCostProducts;
     }
 
-    public ProductList getProductList() {
-        return productList;
+    public void add(Product product) {
+        if (this.products.containsKey(product)) {
+            throw new IllegalArgumentException("Продукт уже куплен");
+        }
+        this.products.put(product, product.getAmount());
     }
+
+    public void remove(Product product) {
+        if (!this.products.containsKey(product)) {
+            throw new IllegalArgumentException("Такого продукта в списке нет!");
+        }
+        products.remove(product);
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -40,6 +55,6 @@ public final class Recipe {
 
     @Override
     public String toString() {
-        return "Рецепт " + name + ", стоимость " + totalCost + ", ингредиенты и их стоимость (за кг) " + productList;
+        return "\nРецепт " + name + ", стоимость " + calculateTotalCostProducts() + " руб., порция (в граммах) ";
     }
 }
